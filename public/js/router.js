@@ -31,7 +31,7 @@ define([
 
 				var that = this;
 				this.currentView = null;
-				this.navBar = new NavBarView
+				//this.navBar = new NavBarView
 
 				console.log('Router inited')
 
@@ -39,10 +39,12 @@ define([
 					method: 'GET',
 					url: '/session',
 					success: function(user){
-						that.currentUser = user;
-						that.navBar = new NavBarView;
-						that.navBar.render()
 
+						//that.currentUser = user;
+						//that.navBar = new NavBarView;
+						//that.navBar.render()
+
+						$('#newNavBar').show()
 					},
 
 					error: function(){
@@ -60,7 +62,8 @@ define([
 				'user/:id'			: 'showUser',
 				'newpost'			: 'addNewPost',
 				'posts'				: 'posts',
-				'post/:id'			: 'showPost'
+				'post/:id'			: 'showPost',
+				'logOut'			: 'logOut'
 			},
 
 			changeView : function(view){
@@ -73,7 +76,7 @@ define([
 
 			},
 
-			logPage: function(){
+			logPage : function(){
 				this.changeView(new LogPageView)
 			},
 
@@ -93,7 +96,7 @@ define([
 					success: function(user){
 						console.log('Success ', user);
 						that.changeView(new AccountView({ model: user}))
-						that.navBar.render()
+						//that.navBar.render()
 					},
 
 					error: function(){
@@ -158,6 +161,20 @@ define([
 							Backbone.history.navigate('#posts', {trigger: true})
 						}
 					})
+			},
+
+			logOut	: function(){
+
+				$.ajax({
+					method: 'DELETE',
+					url: '/session',
+					success: function(){
+						Backbone.history.navigate('#', {trigger: true})
+
+						$('#newNavBar').hide();
+					}
+				});
+
 			}
 		});
 

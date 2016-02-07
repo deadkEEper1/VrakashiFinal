@@ -37,6 +37,7 @@ define([
 
                     success: function(){
                         Backbone.history.navigate('#myaccount', {trigger: true})
+                        $('#newNavBar').show()
                     },
 
                     error: function () {
