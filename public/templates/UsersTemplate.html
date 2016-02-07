@@ -1,0 +1,25 @@
+<h1>Users list</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    <tbody>
+    <% forEach(function(user){%>
+    <tr>
+        <td> <%=user.name %> </td>
+        <td> <%=user.email %> </td>
+
+        <td>
+            <a href="#user/<%=user._id%>">
+                <button> more</button>
+            </a></td>
+
+    </tr>
+
+    <% })%>
+    </tbody>
+    </thead>
+</table>

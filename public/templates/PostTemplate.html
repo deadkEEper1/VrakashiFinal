@@ -1,0 +1,30 @@
+<h1>Post page</h1>
+
+<h3>Title:<%=title%></h3>
+Body: <%=body%>
+<br/>
+Author:
+
+
+<%if(author){%>
+<a href='#user/<%=author._id%>'> <%=author.name %></a>
+<%}else{%>
+
+Deleted User
+
+<%}%>
+
+<br/>
+<br/>
+<br/>
+
+
+
+
+<button id="deletePost" class="adminBtn" style="display: none">Delete this post(Admin Button)</button> <br/>
+
+-------------------------------------
+<br/>
+
+
+<button id="deleteMyPost" style="display: none">Delete(user button)</button>

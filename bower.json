@@ -1,0 +1,25 @@
+{
+  "name": "vrakashi_final",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Юрий <deadkEEper1@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/js/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "backbone": "~1.2.3",
+    "requirejs": "~2.1.22",
+    "text": "requirejs/text#~2.0.14"
+  }
+}
