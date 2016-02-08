@@ -102,6 +102,7 @@ define([
                             alert('Your account was deleted.');
 
                             Backbone.history.navigate('#', {trigger: true})
+                            $('#newNavBar').hide()
                         },
 
                         error: function(err, res){

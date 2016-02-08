@@ -24,15 +24,15 @@ define([
                 url: '/session',
 
                 success: function(user){
-                    if(that.model.author &&
+                    if(user.admin){
+                        $('.adminBtn').show()
+                    }else if(that.model.author &&
                         user._id === that.model.author._id){
                         console.log('Matching')
                         $('#deleteMyPost').show()
                     }
 
-                    if(user.admin){
-                        $('.adminBtn').show()
-                    }
+
                 },
 
                 error: function(res){

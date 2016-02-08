@@ -71,7 +71,10 @@ exports.delteAccount = function(req, res){
     User.findByIdAndRemove(id, function(err, user){
 
         console.log('User deleted')
-        req.session.destroy()
+
+        if(req.session_id == id){
+            req.session.destroy()
+        }
         res.status(200).send({message: "User was deleted successfully"})
     })
 

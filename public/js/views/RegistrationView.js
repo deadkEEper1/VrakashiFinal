@@ -32,11 +32,20 @@ define([
             var password = $('#password').val();
             var confirmPassword = $('#confirmPassword').val();
 
-            if(email    !== confirmEmail ||
-               password !== confirmPassword
 
+            if(
+                name     == '' ||
+                email    == '' ||
+                password == ''
             ){
-                alert('Make sure that email and passwords are mathching.');
+
+                alert('Please.Enter all fields.')
+                $('.registration').val('')
+            }else if(
+                email    !== confirmEmail ||
+                password !== confirmPassword
+
+            ){  alert('Make sure that email and passwords are mathching.');
                 $('.registration').val('')
 
             }else{
@@ -49,12 +58,14 @@ define([
                     success: function(res, model){
                         Backbone.history.navigate('#myaccount',{trigger: true})
                         alert('Welcome to Vrokashi, '+ model.name + ' glad to see you here)')
+                        $('#newNavBar').show();
+
                     },
 
                     error: function(err, ss, m){
                         alert("User with such email is alredy exist.");
-                        Backbone.history.fragment = '';
-                        Backbone.history.navigate('#registration', {trigger: true})
+
+                        $('.registration').val('')
                     }
                 })
 

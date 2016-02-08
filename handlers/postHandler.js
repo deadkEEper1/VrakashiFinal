@@ -34,7 +34,7 @@ exports.getPost = function(req, res){
 };
 
 exports.deletePost = function(req, res){
-    var id = req.params.id
+    var id = req.params.id;
     Post.findByIdAndRemove(id, function(err, post){
         if(err){
             res.status(404).send()
