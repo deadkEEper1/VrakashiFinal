@@ -11,12 +11,13 @@ define([
 		'./models/Post',
 		'./views/PostView',
 		'./models/User',
-		'./views/UserView'
+		'./views/UserView',
+		'./views/GameView'
 	],
 
 	function(LogPageView, RegistrationView,LogInView, AccountView, NavBarView,
 	 	 	 Users, UsersView, AddPostView, PostsView, Post, PostView, User,
-			 UserView) {
+			 UserView, GameView) {
 
 		var Router = Backbone.Router.extend({
 			initialize: function(){
@@ -31,19 +32,13 @@ define([
 
 				var that = this;
 				this.currentView = null;
-				//this.navBar = new NavBarView
 
 				console.log('Router inited')
 
 				$.ajax({
 					method: 'GET',
 					url: '/session',
-					success: function(user){
-
-						//that.currentUser = user;
-						//that.navBar = new NavBarView;
-						//that.navBar.render()
-
+					success: function(){
 						$('#newNavBar').show()
 					},
 
@@ -63,7 +58,8 @@ define([
 				'newpost'			: 'addNewPost',
 				'posts'				: 'posts',
 				'post/:id'			: 'showPost',
-				'logOut'			: 'logOut'
+				'logOut'			: 'logOut',
+				'game'				: 'game'
 			},
 
 			changeView : function(view){
@@ -175,6 +171,11 @@ define([
 					}
 				});
 
+			},
+
+
+			game: function(){
+				this.changeView(new GameView() )
 			}
 		});
 

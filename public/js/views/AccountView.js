@@ -17,15 +17,14 @@ define([
             'click #cancelUpdating' : 'cancelUpdating',
 
             'click #addPost'        : 'addPost',
-
             'click #delete'         : 'deleteAccount'
 
         },
 
         initialize: function(){
-            console.log('Account View inited')
+            console.log('Account View inited');
             var that = this;
-            var posts = new Posts()
+            var posts = new Posts();
                 posts.fetch({
                     async: false,
                     url: '/posts/' + this.model._id,
@@ -36,8 +35,8 @@ define([
         },
 
         render: function(){
-            var that = this
-            this.$el.html(that.template(this.model))
+            var that = this;
+            this.$el.html(that.template(this.model));
 
             if(this.myPosts.length){
                 $('#posts_list').html(this.myPostsTemplate(this.myPosts))
@@ -49,18 +48,18 @@ define([
         },
 
         saveChanges: function(){
-            var newName = $('#newName').val()
-            var newEmail = $('#newEmail').val()
+            var newName = $('#newName').val();
+            var newEmail = $('#newEmail').val();
 
             if(newName && newEmail){
-                var user = new User({_id: this.model._id})
+                var user = new User({_id: this.model._id});
                 user.save({
                         name: newName,
                         email: newEmail
                     },
                     {
-                        success:function(res, model){
-                            alert('Your information was changed and saved')
+                        success:function(){
+                            alert('Your information was changed and saved');
 
                             Backbone.history.fragment = '';
                             Backbone.history.navigate('#myaccount', {trigger: true})
@@ -78,14 +77,13 @@ define([
         },
 
         cancelUpdating: function(){
-            console.log('Cancel updating')
             $('#edit').hide()
         },
 
         addPost: function(){
+
             Backbone.history.fragment = '';
             Backbone.history.navigate('#newpost', {trigger: true})
-
         },
 
         deleteAccount: function(){
@@ -94,24 +92,21 @@ define([
             var condirmDeleting = confirm('Are you sure want to delete your account?');
             if(condirmDeleting){
 
-                var id = this.model._id
-                var user = new User({_id: id})
+                var id = this.model._id;
+                var user = new User({_id: id});
+
                     user.destroy({
                         success: function(){
 
                             alert('Your account was deleted.');
 
-                            Backbone.history.navigate('#', {trigger: true})
+                            Backbone.history.navigate('#', {trigger: true});
                             $('#newNavBar').hide()
-                        },
-
-                        error: function(err, res){
-                            console.log('Error ' , err, res)
                         }
                     })
             }
         }
-    })
+    });
 
     return AccountView
 });
