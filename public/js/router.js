@@ -32,14 +32,15 @@ define([
 
 				var that = this;
 				this.currentView = null;
+				this.navBarView = new NavBarView()
 
-				console.log('Router inited')
+				console.log('Router inited');
 
 				$.ajax({
 					method: 'GET',
 					url: '/session',
 					success: function(){
-						$('#newNavBar').show()
+						that.navBarView.render()
 					},
 
 					error: function(){

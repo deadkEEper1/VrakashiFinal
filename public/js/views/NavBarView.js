@@ -33,7 +33,7 @@ define([
             });
 
             this.undelegateEvents();
-            this.remove()
+            this.$el.html('')
         },
 
         showAllUser: function(){

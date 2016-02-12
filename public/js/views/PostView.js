@@ -25,11 +25,11 @@ define([
 
                 success: function(user){
                     if(user.admin){
-                        $('.adminBtn').show()
+                        $('#adminScope').html('<button id="deletePost">Delete this post(Admin Button)</button> <br/>')
+
                     }else if(that.model.author &&
                         user._id === that.model.author._id){
-                        console.log('Matching')
-                        $('#deleteMyPost').show()
+                        $('#usersButtons').html('<button id="deleteMyPost">Delete(user button)</button>')
                     }
 
 

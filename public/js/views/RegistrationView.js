@@ -1,8 +1,9 @@
 define([
     'text!templates/RegistrationTemplate.html',
-    '../models/User'
+    '../models/User',
+    './NavBarView'
 
-], function(RegistrationTemplate, User){
+], function(RegistrationTemplate, User, NavBarView){
 
     var RegistrationView = Backbone.View.extend({
 
@@ -57,12 +58,13 @@ define([
                 newUser.save({}, {
                     success: function(res, model){
                         Backbone.history.navigate('#myaccount',{trigger: true})
-                        alert('Welcome to Vrokashi, '+ model.name + ' glad to see you here)')
-                        $('#newNavBar').show();
+                        alert('Welcome to Vrokashi, '+ model.name + ' glad to see you here)');
+                        var navBarView = new NavBarView
+                            navBarView.render()
 
                     },
 
-                    error: function(err, ss, m){
+                    error: function(){
                         alert("User with such email is alredy exist.");
 
                         $('.registration').val('')

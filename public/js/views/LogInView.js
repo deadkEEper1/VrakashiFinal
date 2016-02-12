@@ -1,10 +1,10 @@
 define([
     'text!templates/LogInTemplate.html',
+    './NavBarView'
 
 
-    '../router'
 
-], function(LogInTemplate, router){
+], function(LogInTemplate, NavBarView){
 
     var LogInView = Backbone.View.extend({
         el: '#content',
@@ -37,7 +37,8 @@ define([
 
                     success: function(){
                         Backbone.history.navigate('#myaccount', {trigger: true})
-                        $('#newNavBar').show()
+                        var navBarView = new NavBarView()
+                            navBarView.render()
                     },
 
                     error: function () {
