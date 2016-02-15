@@ -8,7 +8,6 @@ define([
     var RegistrationView = Backbone.View.extend({
 
         el: '#content',
-
         template: RegistrationTemplate,
 
         events: {
@@ -39,47 +38,47 @@ define([
                 email    == '' ||
                 password == ''
             ){
-
-                alert('Please.Enter all fields.')
+                alert('Please.Enter all fields.');
                 $('.registration').val('')
+
             }else if(
                 email    !== confirmEmail ||
                 password !== confirmPassword
 
-            ){  alert('Make sure that email and passwords are mathching.');
+            ){
+                alert('Make sure that email and passwords are mathching.');
                 $('.registration').val('')
 
             }else{
+
                 var newUser = new User({
                     name: name,
                     email : email,
                     password: password
                 });
+
                 newUser.save({}, {
                     success: function(res, model){
-                        Backbone.history.navigate('#myaccount',{trigger: true})
-                        alert('Welcome to Vrokashi, '+ model.name + ' glad to see you here)');
-                        var navBarView = new NavBarView
-                            navBarView.render()
+                        var navBarView = new NavBarView;
 
+                        Backbone.history.navigate('#myaccount',{trigger: true});
+
+                        alert('Welcome to Vrokashi, '+ model.name + ' glad to see you here)');
+
+                        navBarView.render()
                     },
 
                     error: function(){
-                        alert("User with such email is alredy exist.");
-
+                        alert("User with such email is already exist.");
                         $('.registration').val('')
                     }
                 })
-
             }
-
         },
 
-        back        : function(){
+        back    : function(){
             Backbone.history.navigate('#', {trigger: true})
         }
-
-
     });
 
     return RegistrationView

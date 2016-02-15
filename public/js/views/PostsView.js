@@ -6,22 +6,22 @@ define([
     var PostsView = Backbone.View.extend({
 
         el: '#content',
-
         template: _.template(PostsTemplate),
+
         events: {
             'click div': 'read_post'
         },
 
         initialize: function(){
             console.log('Posts View Inited');
-            var that = this;
+            var self = this;
 
             var posts = new Posts
                 posts.fetch({
                     async: false,
 
                     success: function(res, posts){
-                        that.collection = posts;
+                        self.collection = posts;
                     }
                 })
 

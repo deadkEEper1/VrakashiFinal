@@ -6,7 +6,6 @@ define([
 
     var PostView = Backbone.View.extend({
         el: '#content',
-
         template: _.template(PostTemplate),
 
         events:{
@@ -15,9 +14,7 @@ define([
         },
 
         initialize: function(){
-            console.log('Post View inited')
-            var that = this;
-
+            var self = this;
 
             $.ajax({
                 method: 'GET',
@@ -27,15 +24,10 @@ define([
                     if(user.admin){
                         $('#adminScope').html('<button id="deletePost">Delete this post(Admin Button)</button> <br/>')
 
-                    }else if(that.model.author &&
-                        user._id === that.model.author._id){
+                    }else if(self.model.author &&
+                        user._id === self.model.author._id){
                         $('#usersButtons').html('<button id="deleteMyPost">Delete(user button)</button>')
                     }
-
-
-                },
-
-                error: function(res){
                 }
             })
         },
@@ -45,11 +37,12 @@ define([
         },
 
         deleteMyPost: function(){
-            var id = this.model._id
-            var post = new Post({_id: id})
+            var id = this.model._id;
+            var post = new Post({_id: id});
+
             post.destroy({
                 success: function(){
-                    alert('Post wass deleted successfully')
+                    alert('Post wass deleted successfully');
 
                     Backbone.history.fragment = '';
                     Backbone.history.navigate('#myaccount', {trigger: true})
@@ -62,11 +55,11 @@ define([
         },
 
         deletePost : function(){
-            var id = this.model._id
-            var post = new Post({_id: id})
+            var id = this.model._id;
+            var post = new Post({_id: id});
             post.destroy({
                 success: function(){
-                    alert('Post wass deleted successfully')
+                    alert('Post wass deleted successfully');
 
                     Backbone.history.fragment = '';
                     Backbone.history.navigate('#posts', {trigger: true})
@@ -77,7 +70,7 @@ define([
                 }
             })
         }
-    })
+    });
 
     return PostView
-})
+});

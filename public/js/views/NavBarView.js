@@ -51,7 +51,7 @@ define([
             Backbone.history.fragment = '';
             Backbone.history.navigate('#myaccount', {trigger:true})
         }
-    })
+    });
 
     return NavBarView
-})
+});

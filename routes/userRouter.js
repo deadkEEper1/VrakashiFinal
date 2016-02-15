@@ -1,15 +1,15 @@
 var express = require('express');
 
 var userRouter = express.Router();
-var userHandler = require('../handlers/userHandler')
+var userHandler = require('../handlers/userHandler');
 
 userRouter.route('/')
-    .post(userHandler.saveUser)
+    .post(userHandler.saveUser);
 
 
 userRouter.route('/:id')
     .get(userHandler.getUser)
     .put(userHandler.updateUser)
-    .delete(userHandler.delteAccount)
+    .delete(userHandler.delteAccount);
 
-module.exports = userRouter
+module.exports = userRouter;

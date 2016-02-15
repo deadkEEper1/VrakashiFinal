@@ -21,7 +21,8 @@ exports.createPost = function(req, res){
 };
 
 exports.getPost = function(req, res){
-    var id = req.params.id
+    var id = req.params.id;
+
     Post.findById(id)
         .populate('author')
         .exec(function(err, post){
@@ -35,6 +36,7 @@ exports.getPost = function(req, res){
 
 exports.deletePost = function(req, res){
     var id = req.params.id;
+
     Post.findByIdAndRemove(id, function(err, post){
         if(err){
             res.status(404).send()
@@ -42,4 +44,4 @@ exports.deletePost = function(req, res){
             res.status(200).send(post)
         }
     })
-}
+};

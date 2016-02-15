@@ -4,9 +4,9 @@ var postsRouter = express.Router();
 var postsHandler = require('../handlers/postsHandler');
 
 postsRouter.route('/')
-    .get(postsHandler.getAllPosts)
+    .get(postsHandler.getAllPosts);
 
 postsRouter.route('/:author')
-    .get(postsHandler.findByAuthor)
+    .get(postsHandler.findByAuthor);
 
-module.exports = postsRouter
+module.exports = postsRouter;

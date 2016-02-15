@@ -1,11 +1,10 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var body_parser = require('body-parser');
-var session = require('express-session')
+var session = require('express-session');
 var morgan = require('morgan');
-var crypto = require('crypto');
-
 var routes = require('./routes');
+
 var app = express();
 
 //Data base config
@@ -21,13 +20,11 @@ db.on('open', function(){
 app.use(express.static(__dirname));
 app.use(body_parser({urlencoded : true}));
 app.use(session(
-    {secret: 'ssshhhhh',
+    {
+        secret: 'ssshhhhh',
         saveUnitialized: true}
 ));
 app.use(morgan('dev'));
-
-
-
 app.use(routes);
 
 

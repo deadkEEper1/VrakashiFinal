@@ -2,23 +2,19 @@ define([
     'text!templates/AddPosttemplate.html',
     '../models/Post'
 
-],  function(AddPosttemplate, Post){
+],  function(AddPostTemplate, Post){
 
     var AddPostView = Backbone.View.extend({
 
         el: '#content',
-
-        template: _.template(AddPosttemplate),
+        template: _.template(AddPostTemplate),
 
         events: {
             'click #addPost'    : 'createPost'
         },
 
-
         initialize: function(){
-            console.log('Add New Post View Inited');
-
-            var that = this;
+            var self = this;
 
             $.ajax({
                 method: 'GET',
@@ -26,7 +22,7 @@ define([
                 async: false,
 
                 success: function(res){
-                    that.author = res._id
+                    self.author = res._id
                 }
             });
         },
@@ -36,8 +32,8 @@ define([
         },
 
         createPost: function(){
-            var title = $('#title').val()
-            var body = $('#body').val()
+            var title = $('#title').val();
+            var body = $('#body').val();
 
             var newPost = new Post ({
                 title: title,
@@ -47,12 +43,9 @@ define([
             });
 
             newPost.save({}, {
-                success: function(res){
-                    console.log(res)
-
+                success: function(){
                     Backbone.history.fragment = '';
                     Backbone.history.navigate('#posts', {trigger: true})
-
                 }
             })
         }
@@ -61,4 +54,4 @@ define([
     });
 
     return AddPostView
-})
+});

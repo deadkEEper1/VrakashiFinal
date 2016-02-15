@@ -5,11 +5,11 @@ define([
     '../models/User'
 
 ], function(AccountTemplate, Posts, PostsListTemplate, User){
+
     var AccountView = Backbone.View.extend({
         el: '#content',
         template: _.template(AccountTemplate),
         myPostsTemplate: _.template(PostsListTemplate),
-
 
         events :{
             'click #update': 'update',
@@ -22,22 +22,22 @@ define([
         },
 
         initialize: function(){
-            console.log('Account View inited');
-            var that = this;
+            var self = this;
             var posts = new Posts();
+
                 posts.fetch({
                     async: false,
                     url: '/posts/' + this.model._id,
                     success: function(res, posts){
-                        that.myPosts = posts
+                        self.myPosts = posts
                     }
                 })
         },
 
         render: function(){
-            var that = this;
-            this.$el.html(that.template(this.model));
+            var self = this;
 
+            this.$el.html(self.template(this.model));
             if(this.myPosts.length){
                 $('#posts_list').html(this.myPostsTemplate(this.myPosts))
             }
@@ -66,13 +66,12 @@ define([
 
                         },
 
-
                         error: function(res, obj){
                             alert(obj.responseText)
                         }
                     })
             }else{
-                alert('Please< enter new name and email')
+                alert('Please, enter new name and email')
             }
         },
 
@@ -81,27 +80,21 @@ define([
         },
 
         addPost: function(){
-
             Backbone.history.fragment = '';
             Backbone.history.navigate('#newpost', {trigger: true})
         },
 
         deleteAccount: function(){
-            console.log('Delete this account');
-
             var condirmDeleting = confirm('Are you sure want to delete your account?');
-            if(condirmDeleting){
 
+            if(condirmDeleting){
                 var id = this.model._id;
                 var user = new User({_id: id});
 
                     user.destroy({
                         success: function(){
-
                             alert('Your account was deleted.');
-
                             Backbone.history.navigate('#', {trigger: true});
-                            $('#newNavBar').hide()
                         }
                     })
             }

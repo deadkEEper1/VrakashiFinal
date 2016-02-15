@@ -8,13 +8,12 @@ require.config({
 
 	},
 
-
 	shim: {
         'app': ['backbone']
 	}
-})
+});
 
 
 require(['./app'], function(App) {
 	App.init()
-})
+});

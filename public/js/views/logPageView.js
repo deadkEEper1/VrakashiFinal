@@ -7,7 +7,6 @@ define([
         var LogPageView = Backbone.View.extend({
 
             el: '#content',
-
             template: LogPageTemplate,
 
             events: {

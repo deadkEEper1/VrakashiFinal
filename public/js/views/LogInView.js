@@ -2,8 +2,6 @@ define([
     'text!templates/LogInTemplate.html',
     './NavBarView'
 
-
-
 ], function(LogInTemplate, NavBarView){
 
     var LogInView = Backbone.View.extend({
@@ -36,14 +34,13 @@ define([
                     },
 
                     success: function(){
-                        Backbone.history.navigate('#myaccount', {trigger: true})
-                        var navBarView = new NavBarView()
+                        Backbone.history.navigate('#myaccount', {trigger: true});
+                        var navBarView = new NavBarView();
                             navBarView.render()
                     },
 
                     error: function () {
-                        alert('Please ensuare your email and pass entered correct')
-
+                        alert('Please ensure that your email and pass entered correct');
                         $('.logIn').val('');
                     }
                 }
@@ -51,7 +48,6 @@ define([
         },
 
         back: function(){
-
             Backbone.history.navigate('#', {trigger: true})
         }
 

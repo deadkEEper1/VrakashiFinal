@@ -1,9 +1,7 @@
-var Post = require('../mongoModels/Post')
+var Post = require('../mongoModels/Post');
 
 
 exports.getAllPosts = function(req, res) {
-    console.log(req.params)
-    console.log(req.body)
 
     Post.find({})
         .populate('author')
@@ -11,7 +9,7 @@ exports.getAllPosts = function(req, res) {
             if(err){
                 res.send()
             }else{
-                console.log(posts)
+                console.log(posts);
                 res.status(200).send(posts)
             }
         })
@@ -21,6 +19,7 @@ exports.getAllPosts = function(req, res) {
 
 exports.findByAuthor = function(req, res){
     var author = req.params.author;
+
     Post.find({author: author}, function(err, posts){
         res.send(posts)
 

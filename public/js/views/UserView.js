@@ -8,7 +8,6 @@ define([
     var UserView = Backbone.View.extend({
 
         el: '#content',
-
         template: _.template(UserTemplate),
         usersPostsTemplate: _.template(PostsListTemplate),
 
@@ -17,19 +16,18 @@ define([
         },
 
         initialize: function(){
-            console.log('User View inited');
-            var that = this
-            this.usersPosts = null
-
+            var self = this;
+            this.usersPosts = null;
             var usersPosts = new Posts();
+
                 usersPosts.fetch({
                     url: '/posts/' + this.model._id,
                     async: false,
 
                     success: function(res, posts){
-                        that.usersPosts = posts
+                        self.usersPosts = posts
                     }
-                })
+                });
 
             $.ajax({
                 url: '/session',
@@ -39,7 +37,6 @@ define([
                     if(user.admin){
                         $('#adminScope').html('<button id="deleteThisUser">Delete User(Admin button) </button>')
                     }
-
                 }
             })
         },
@@ -53,18 +50,18 @@ define([
 
         deleteThisUser : function(){
             var thisUser = new User({_id: this.model._id});
+
                 thisUser.destroy({
                     success: function(){
-                        alert('You just deleted this user')
+                        alert('You just deleted this user');
 
-                        Backbone.history.fragment = ''
+                        Backbone.history.fragment = '';
                         Backbone.history.navigate('#users', {trigger:true})
 
                     }
                 })
-
         }
-    })
+    });
 
     return UserView
-})
+});

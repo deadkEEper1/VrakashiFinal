@@ -30,9 +30,9 @@ define([
                  //
 				 //me.save()
 
-				var that = this;
+				var self = this;
 				this.currentView = null;
-				this.navBarView = new NavBarView()
+				this.navBarView = new NavBarView();
 
 				console.log('Router inited');
 
@@ -40,7 +40,7 @@ define([
 					method: 'GET',
 					url: '/session',
 					success: function(){
-						that.navBarView.render()
+						self.navBarView.render()
 					},
 
 					error: function(){
@@ -86,45 +86,39 @@ define([
 			},
 
 			myaccount: function(){
-				var that = this;
+				var self = this;
 				jQuery.ajax({
 					method: 'GET',
 					url: '/session',
 					success: function(user){
 						console.log('Success ', user);
-						that.changeView(new AccountView({ model: user}))
-						//that.navBar.render()
+						self.changeView(new AccountView({ model: user}))
 					},
 
 					error: function(){
 						Backbone.history.navigate('#', {trigger: true})
 					}
 				})
-
-
-
-
-
 			},
 
 			showAllUsers : function(){
-				var that = this;
+				var self = this;
 
-				var users = new Users
+				var users = new Users;
 					users.fetch({
 						success: function(res, users){
 							console.log(users)
-							that.changeView(new UsersView({collection: users}))
+							self.changeView(new UsersView({collection: users}))
 						}
 					})
 			},
 
 			showUser	: function(id){
-				var that = this;
+				var self = this;
 				var user = new User({ _id: id})
 					user.fetch({
 						success: function(res, user){
-							that.changeView(new UserView({model: user}))
+							self.changeView(new UserView({model: user}))
 
 						},
 
@@ -144,12 +138,12 @@ define([
 			},
 
 			showPost: function(id){
-				var that = this;
+				var self = this;
 				var post = new Post({_id: id})
 					post.fetch({
 						success: function(res, post){
 							console.log(post)
-							that.changeView(new PostView({model: post}) )
+							self.changeView(new PostView({model: post}) )
 						},
 
 						error: function(res){

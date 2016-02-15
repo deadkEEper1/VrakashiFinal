@@ -16,21 +16,24 @@ exports.getSession =  function(req, res){
 exports.logIn = function (req, res) {
     var email = req.body.email;
     var pass = req.body.password;
+
     var shaSum = crypto.createHash('sha256');
-        shaSum.update(pass)
+
+        shaSum.update(pass);
         pass = shaSum.digest('hex');
 
     User.findOne({email: email, password: pass}, function (err, user) {
         if(!user){
             res.status(404).send()
         }else{
-            req.session._id = user._id
+            req.session._id = user._id;
             res.send(user)
         }
     })
-}
+};
 
 exports.logOut = function(req, res){
-    req.session.destroy()
+
+    req.session.destroy();
     res.send()
 };
