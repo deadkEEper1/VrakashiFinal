@@ -29,6 +29,6 @@ app.use(routes);
 
 
 
- app.listen (3030, function() {
+ app.listen(3030, function() {
 	console.log('Server started')
 });

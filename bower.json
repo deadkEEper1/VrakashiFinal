@@ -20,6 +20,7 @@
     "jquery": "~2.2.0",
     "backbone": "~1.2.3",
     "requirejs": "~2.1.22",
-    "text": "requirejs/text#~2.0.14"
+    "text": "requirejs/text#~2.0.14",
+    "bootstrap": "~3.3.6"
   }
 }

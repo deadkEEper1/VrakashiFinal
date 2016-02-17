@@ -35,7 +35,7 @@ define([
 
                 success: function(user){
                     if(user.admin){
-                        $('#adminScope').html('<button id="deleteThisUser">Delete User(Admin button) </button>')
+                        $('#adminScope').html('<button id="deleteThisUser" class="btn btn-danger">Delete User(Admin button) </button>')
                     }
                 }
             })

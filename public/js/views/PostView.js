@@ -22,11 +22,11 @@ define([
 
                 success: function(user){
                     if(user.admin){
-                        $('#adminScope').html('<button id="deletePost">Delete this post(Admin Button)</button> <br/>')
+                        $('#adminScope').html('<button id="deletePost" class="btn btn-danger">Delete this post(Admin Button)</button> <br/>')
 
                     }else if(self.model.author &&
                         user._id === self.model.author._id){
-                        $('#usersButtons').html('<button id="deleteMyPost">Delete(user button)</button>')
+                        $('#usersButtons').html('<button id="deleteMyPost" class="btn btn-danger">Delete(user button)</button>')
                     }
                 }
             })

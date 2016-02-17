@@ -4,13 +4,15 @@
     Name :<%=name%>
     <br/>
     Email:<%=email%>
+    <br/>
+</h3>
 
-    <br/></h3>
 
-
-<button id="update">Update Profile</button>
-<button id="delete">Delete Account</button>
-<button id="addPost">Add post</button>
+<button id="update" class="btn btn-primary">Update Profile</button>
+<button id="delete" class="btn btn-danger">Delete Account</button>
+<button id="addPost" class="btn btn-success">
+    <span class="glyphicon glyphicon-pencil"></span>
+    Add post</button>
 <br/>
 
 <h4>My posts:</h4>
@@ -25,8 +27,12 @@
     <input id="newEmail" name="email" placeholder='<%=email%>'>
     <br>
 
-    <button id="saveChanges">Update</button>
-    <button id="cancelUpdating">Cancel</button>
+    <button id="saveChanges" class="btn btn-primary">
+        <span class="glyphicon glyphicon-ok"></span>
+        Update</button>
+    <button id="cancelUpdating" class="btn btn-primary">
+        <span class="glyphicon glyphicon-remove"></span>
+        Cancel</button>
 
 </div>
 

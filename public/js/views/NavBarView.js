@@ -8,10 +8,7 @@ define([
 
 
         events:{
-            'click #logOut'      : 'logOut',
-            'click #users'       : 'showAllUser' ,
-            'click #posts'       : 'showAllPosts' ,
-            'click #myAccount'   : 'myAccount'
+            'click #logOut'      : 'logOut'
         },
 
         initialize: function(){
