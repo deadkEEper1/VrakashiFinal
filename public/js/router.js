@@ -74,6 +74,7 @@ define([
 			},
 
 			logPage : function(){
+				console.log(this.currentUser)
 				this.changeView(new LogPageView)
 			},
 
@@ -139,10 +140,10 @@ define([
 
 			showPost: function(id){
 				var self = this;
-				var post = new Post({_id: id})
+				var post = new Post({_id: id});
 					post.fetch({
 						success: function(res, post){
-							console.log(post)
+							console.log(post);
 							self.changeView(new PostView({model: post}) )
 						},
 
@@ -161,11 +162,11 @@ define([
 					url: '/session',
 					success: function(){
 						Backbone.history.navigate('#', {trigger: true})
-
-						$('#newNavBar').hide();
 					}
 				});
 
+				this.navBarView.undelegateEvents();
+				$('#navBar').html('')
 			},
 
 

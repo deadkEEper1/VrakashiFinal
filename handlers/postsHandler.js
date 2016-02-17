@@ -9,7 +9,6 @@ exports.getAllPosts = function(req, res) {
             if(err){
                 res.send()
             }else{
-                console.log(posts);
                 res.status(200).send(posts)
             }
         })

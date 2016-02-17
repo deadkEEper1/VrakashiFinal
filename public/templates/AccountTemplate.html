@@ -1,5 +1,6 @@
 <h1>Account Page</h1>
 
+ <h2>Info:</h2>
 <h3>
     Name :<%=name%>
     <br/>
@@ -23,16 +24,19 @@
 
 <div id="edit" style="display: none">
 
-    <input id="newName" name="name" placeholder='<%=name%>'>
-    <input id="newEmail" name="email" placeholder='<%=email%>'>
+    <input id="newName" name="name" class="form-control" placeholder='<%=name%>'>
+    <input id="newEmail" name="email" class="form-control" placeholder='<%=email%>'>
     <br>
 
     <button id="saveChanges" class="btn btn-primary">
         <span class="glyphicon glyphicon-ok"></span>
-        Update</button>
+        Update
+    </button>
+
     <button id="cancelUpdating" class="btn btn-primary">
         <span class="glyphicon glyphicon-remove"></span>
-        Cancel</button>
+        Cancel
+    </button>
 
 </div>
 

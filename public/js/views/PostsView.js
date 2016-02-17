@@ -35,9 +35,9 @@ define([
 
         read_post : function(e){
 
-            var targetEl = $(e.target);
-            var div = targetEl.closest('div');
-            var id = div.attr('id');
+            var $targetEl = $(e.target);
+            var $div = $targetEl.closest('div');
+            var id = $div.attr('id');
 
 
             Backbone.history.fragment = '';

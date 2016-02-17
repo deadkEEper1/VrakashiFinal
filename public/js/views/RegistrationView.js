@@ -34,9 +34,11 @@ define([
 
 
             if(
-                name     == '' ||
-                email    == '' ||
-                password == ''
+                name            == '' ||
+                email           == '' ||
+                confirmEmail    == '' ||
+                password        == '' ||
+                confirmPassword == ''
             ){
                 alert('Please.Enter all fields.');
                 $('.registration').val('')
