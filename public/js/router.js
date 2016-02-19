@@ -32,6 +32,7 @@ define([
 
 				var self = this;
 				this.currentView = null;
+				this.userIn;
 				this.navBarView = new NavBarView();
 
 				console.log('Router inited');
@@ -39,8 +40,10 @@ define([
 				$.ajax({
 					method: 'GET',
 					url: '/session',
+					async: false,
 					success: function(){
 						self.navBarView.render()
+						self.userIn = true;
 					},
 
 					error: function(){
@@ -63,6 +66,7 @@ define([
 				'game'				: 'game'
 			},
 
+
 			changeView : function(view){
 				if(null !== this.currentView){
 					this.currentView.undelegateEvents()
@@ -74,16 +78,28 @@ define([
 			},
 
 			logPage : function(){
-				console.log(this.currentUser)
-				this.changeView(new LogPageView)
+				if(this.userIn){
+					Backbone.history.navigate('#myaccount', {trigger: true})
+				}else{
+					this.changeView(new LogPageView)
+				}
 			},
 
 			registrate: function(){
-				this.changeView(new	RegistrationView)
+				if(this.userIn){
+					Backbone.history.navigate('#myaccount', {trigger: true})
+				}else{
+					this.changeView(new RegistrationView)
+				}
 			},
 
 			logIn	: function(){
-				this.changeView(new LogInView)
+
+				if(this.userIn){
+					Backbone.history.navigate('#myaccount', {trigger: true})
+				}else{
+					this.changeView(new LogInView)
+				}
 			},
 
 			myaccount: function(){
@@ -91,9 +107,12 @@ define([
 				jQuery.ajax({
 					method: 'GET',
 					url: '/session',
+					async: false,
 					success: function(user){
 						console.log('Success ', user);
 						self.changeView(new AccountView({ model: user}))
+
+						self.userIn = true;
 					},
 
 					error: function(){
@@ -156,6 +175,7 @@ define([
 			},
 
 			logOut	: function(){
+				this.userIn = false;
 
 				$.ajax({
 					method: 'DELETE',
