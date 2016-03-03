@@ -2,16 +2,29 @@ var User = require('../mongoModels/User');
 var crypto = require('crypto');
 
 exports.getSession =  function(req, res){
-    if(req.session._id !== undefined){
-        User.findById(req.session._id, function(err, user){
-            console.log("User founded");
-            res.send(user)
-        })
+    if(req.session.user && req.session.user._id !== undefined){
+
+        User.findById(req.session.user._id)
+            .populate('friends.outcomeRequests')
+            .populate('friends.incomeRequests')
+            .populate('friends.friends')
+            .populate('posts')
+            .exec(function (err, user) {
+                if(!user){
+                    console.log('err', err)
+                    res.status(404).end()
+                }else{
+                    console.log('user', user)
+                    res.send(user)
+
+                }
+            })
     }else{
         res.status(401).send()
     }
 
     };
+
 
 exports.logIn = function (req, res) {
     var email = req.body.email;
@@ -26,11 +39,12 @@ exports.logIn = function (req, res) {
         if(!user){
             res.status(404).send()
         }else{
-            req.session._id = user._id;
+            req.session.user = user;
             res.send(user)
         }
     })
 };
+
 
 exports.logOut = function(req, res){
 

@@ -11,24 +11,26 @@ define([
 		'./models/Post',
 		'./views/PostView',
 		'./models/User',
+		'./models/Admin',
 		'./views/UserView',
 		'./views/GameView'
 	],
 
 	function(LogPageView, RegistrationView,LogInView, AccountView, NavBarView,
 	 	 	 Users, UsersView, AddPostView, PostsView, Post, PostView, User,
-			 UserView, GameView) {
+			 Admin, UserView, GameView) {
 
 		var Router = Backbone.Router.extend({
 			initialize: function(){
-				 //var me = new User({
-				 //					name: 'Jura',
-				 //					email: 'deadkeeper1@gmail.com',
-				 //					password: 'gmail',
-				 //					admin: true
-				 //				})
-                 //
-				 //me.save()
+
+				 var me = new Admin({
+									name: 'Jura',
+									email: 'deadkeeper1@gmail.com',
+									password: 'gmail'
+								});
+				//me.save();
+
+
 
 				var self = this;
 				this.currentView = null;
@@ -47,6 +49,9 @@ define([
 					},
 
 					error: function(){
+						self.userIn = false;
+						console.log('err')
+						Backbone.history.fragment = '';
 						Backbone.history.navigate('#', {trigger: true})
 					}
 				})
@@ -78,11 +83,27 @@ define([
 			},
 
 			logPage : function(){
-				if(this.userIn){
-					Backbone.history.navigate('#myaccount', {trigger: true})
-				}else{
-					this.changeView(new LogPageView)
-				}
+				var self = this
+				$.ajax({
+					method: 'GET',
+					url: '/session',
+					async: false,
+					success: function(){
+						Backbone.history.navigate('#myaccount', {trigger: true})
+
+					},
+
+					error: function(){
+						self.userIn = false;
+						$('#navBar').html('');
+
+
+						self.changeView(new LogPageView)
+					}
+				})
+
+
+
 			},
 
 			registrate: function(){
@@ -135,7 +156,7 @@ define([
 
 			showUser	: function(id){
 				var self = this;
-				var user = new User({ _id: id})
+				var user = new User({ _id: id});
 					user.fetch({
 						success: function(res, user){
 							self.changeView(new UserView({model: user}))

@@ -40,3 +40,34 @@
 
 </div>
 
+
+
+
+    <div id="incomeRequests"> <h3>Income requests:</h3>
+
+        <%
+        friends.incomeRequests.forEach(function(contact){
+        console.log(contact)
+        %><br/>
+        <a href="#user/<%=contact._id%>"><%=contact.name%></a>
+        <%
+        })
+        %>
+    </div>
+
+    <div id="friends"><h3> Friends:</h3>
+        <%
+        friends.friends.forEach(function(contact){
+        console.log(contact)
+        %><br/>
+        <a href="#user/<%=contact._id%>"><%=contact.name%></a>
+        <%
+        })
+        %>
+    </div>
+
+
+
+
+
+

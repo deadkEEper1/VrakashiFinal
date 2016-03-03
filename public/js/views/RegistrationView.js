@@ -62,7 +62,6 @@ define([
                 newUser.save({}, {
                     success: function(res, model){
                         var navBarView = new NavBarView;
-
                         Backbone.history.navigate('#myaccount',{trigger: true});
 
                         alert('Welcome to Vrokashi, '+ model.name + ' glad to see you here)');

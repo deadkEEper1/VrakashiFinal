@@ -12,4 +12,9 @@ userRouter.route('/:id')
     .put(userHandler.updateUser)
     .delete(userHandler.delteAccount);
 
+userRouter.route('/:id/friends')
+    .post(userHandler.sendFriendReq)
+    .put(userHandler.acceptFriend);
+
+
 module.exports = userRouter;

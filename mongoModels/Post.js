@@ -17,6 +17,7 @@ var postSchema = new Schema({
         ref: 'users'
 
     }
+
 });
 
 

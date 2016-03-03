@@ -138,3 +138,16 @@ body{
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+button.sendReq{
+    background-color: #06426c;
+}
+
+button.accept{
+    background-color: green;
+}
+button.friends{
+    background-color: mediumturquoise;
+}
+button.waitwaitForAccepting{
+    background-color: gray;
+}

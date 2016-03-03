@@ -1,6 +1,7 @@
 define([
     'text!templates/AddPosttemplate.html',
-    '../models/Post'
+    '../models/Post',
+
 
 ],  function(AddPostTemplate, Post){
 
@@ -10,7 +11,8 @@ define([
         template: _.template(AddPostTemplate),
 
         events: {
-            'click #addPost'    : 'createPost'
+            'click #addPost'    : 'createPost',
+
         },
 
         initialize: function(){
@@ -46,11 +48,13 @@ define([
                 success: function(){
                     Backbone.history.fragment = '';
                     Backbone.history.navigate('#posts', {trigger: true})
+                },
+
+                error: function(err){
+                    console.log(err)
                 }
             })
         }
-
-
     });
 
     return AddPostView
