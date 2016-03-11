@@ -14,7 +14,9 @@ userRouter.route('/:id')
 
 userRouter.route('/:id/friends')
     .post(userHandler.sendFriendReq)
-    .put(userHandler.acceptFriend);
+    .put(userHandler.acceptFriend)
+    .delete(userHandler.deleteFriend);
+
 
 
 module.exports = userRouter;

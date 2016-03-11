@@ -101,3 +101,15 @@ exports.acceptFriend = function(req, res){
 
 
 }
+
+
+exports.deleteFriend = function(req, res){
+    var accId = req.body._id;
+    var userId = req.session.user._id;
+
+    User.findById(userId, function(err, user){
+        user.deleteFriend(userId, accId)
+    })
+
+    res.end()
+}

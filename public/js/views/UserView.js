@@ -151,7 +151,21 @@ define([
         },
 
         removeFromFriends: function(){
-            console.log('Delete Friend')
+            var userId = this.model._id;
+            var self = this;
+
+            $.ajax({
+                url: '/user/'+userId+'/friends',
+                method: 'DELETE',
+
+                data: {
+                    _id: userId
+                },
+
+                success: function(){
+                    self.render()
+                }
+            });
         }
     });
 

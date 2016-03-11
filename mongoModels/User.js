@@ -73,7 +73,6 @@ userSchema.methods.acceptFriendRequest = function(userId, accountId){
              console.log(user)
              if(user == accountId){
                  array.splice(index, 1)
-                 console.log('true')
              }
          });
         user.friends.friends.push(accountId);
@@ -97,6 +96,32 @@ userSchema.methods.acceptFriendRequest = function(userId, accountId){
     });
 }
 
+userSchema.methods.deleteFriend = function (userId, accountId) {
+
+    console.log('Delete friend');
+    User.findById(userId, function(err, user){
+
+        user.friends.friends.forEach(function(user, index, array){
+            if(user == accountId){
+                array.splice(index, 1)
+            }
+        });
+        user.save();
+        return
+
+    });
+
+    User.findById(accountId, function(err, user){
+        user.friends.friends.forEach(function(user,index, array){
+            if(user == userId){
+                array.splice(index, 1)
+
+            }
+        });
+        user.save();
+        return
+    });
+}
 var User = mongoose.model('users', userSchema);
 
 
