@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var postSchema = new Schema({
-
     title: {
         required: true,
         type: String
     },
+
     body: {
         required: true,
         type: String
@@ -15,9 +15,7 @@ var postSchema = new Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
-
     }
-
 });
 
 

@@ -1,5 +1,5 @@
 define([
-        'text!templates/UsersTemplate.html',
+        'text!templates/UsersTemplate.html'
     ],
     function(UsersTemplate) {
 

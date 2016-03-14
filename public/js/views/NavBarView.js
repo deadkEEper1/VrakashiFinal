@@ -3,6 +3,7 @@ define([
 ], function(NavBarTemplate){
 
     var NavBarView = Backbone.View.extend({
+
         el: '#navBar',
         template: _.template(NavBarTemplate),
 

@@ -7,6 +7,7 @@ define([
 ], function(AccountTemplate, Posts, PostsListTemplate, User){
 
     var AccountView = Backbone.View.extend({
+
         el: '#content',
         template: _.template(AccountTemplate),
         myPostsTemplate: _.template(PostsListTemplate),
@@ -18,16 +19,16 @@ define([
 
             'click #addPost'        : 'addPost',
             'click #delete'         : 'deleteAccount'
-
         },
 
         initialize: function(){
             var self = this;
             var posts = new Posts();
+            var id = this.model._id;
 
                 posts.fetch({
                     async: false,
-                    url: '/posts/' + this.model._id,
+                    url: '/posts/' + id ,
                     success: function(res, posts){
                         self.myPosts = posts
                     }
@@ -36,10 +37,11 @@ define([
 
         render: function(){
             var self = this;
+            var myPosts = this.myPosts
 
             this.$el.html(self.template(this.model));
-            if(this.myPosts.length){
-                $('#posts_list').html(this.myPostsTemplate(this.myPosts))
+            if(myPosts.length){
+                $('#posts_list').html(this.myPostsTemplate(myPosts))
             }
         },
 
@@ -59,11 +61,10 @@ define([
                     },
                     {
                         success:function(){
-                            alert('Your information was changed and saved');
+                            alert('Your information changed and saved');
 
                             Backbone.history.fragment = '';
                             Backbone.history.navigate('#myaccount', {trigger: true})
-
                         },
 
                         error: function(res, obj){

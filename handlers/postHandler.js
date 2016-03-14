@@ -2,15 +2,12 @@ var Post = require('../mongoModels/Post');
 var User = require('../mongoModels/User');
 
 
-
-
 exports.createPost = function(req, res){
     var title = req.body.title;
     var body  = req.body.body;
     var author = req.body.author;
     var availability = req.body.availability;
-
-    var postId
+    var postId;
 
     var newPost = new Post ({
         title: title,
@@ -19,17 +16,14 @@ exports.createPost = function(req, res){
         availability: availability
     });
 
-
-
     newPost.save(function(err, post){
         if(err){
-            console.log(err)
+            console.log(err);
             res.status(500).send(err)
         }else{
-            console.log(post)
-            postId = post._id
-            console.log('Post id is: '+ postId)
-            res.status(200).send(post)
+            console.log(post);
+            postId = post._id;
+            res.status(200).send(post);
         }
     });
 };

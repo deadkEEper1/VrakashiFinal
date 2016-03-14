@@ -10,4 +10,4 @@ postRouter.route('/:id')
     .get(postHandler.getPost)
     .delete(postHandler.deletePost);
 
-module.exports = postRouter
+module.exports = postRouter;

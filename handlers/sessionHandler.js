@@ -11,16 +11,15 @@ exports.getSession =  function(req, res){
             .populate('posts')
             .exec(function (err, user) {
                 if(!user){
-                    console.log('err', err)
-                    res.status(404).end()
+                    console.log('err', err);
+                    res.status(401).end()
                 }else{
-                    console.log('user', user)
+                    console.log('user', user);
                     res.send(user)
-
                 }
             })
     }else{
-        res.status(401).send()
+        res.status(404).send()
     }
 
     };

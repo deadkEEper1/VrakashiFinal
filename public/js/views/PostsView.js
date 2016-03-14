@@ -16,7 +16,7 @@ define([
             console.log('Posts View Inited');
             var self = this;
 
-            var posts = new Posts
+            var posts = new Posts;
                 posts.fetch({
                     async: false,
 
@@ -24,12 +24,10 @@ define([
                         self.collection = posts;
                     }
                 })
-
         },
 
         render: function(){
             this.$el.html(this.template(this.collection))
-
         },
 
 
@@ -39,15 +37,10 @@ define([
             var $div = $targetEl.closest('div');
             var id = $div.attr('id');
 
-
             Backbone.history.fragment = '';
             Backbone.history.navigate('#post/'+id, {trigger: true})
-
-
         }
-
-
-    })
+    });
 
     return PostsView
-})
+});

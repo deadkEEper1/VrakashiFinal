@@ -1,48 +1,56 @@
 <h1>Account Page</h1>
 
- <h2>Info:</h2>
-<h3>
-    Name :<%=name%>
+
+
+
+<div  id="info">
+    <h2>Info:</h2>
+    <h3>
+        Name :<%=name%>
+        <br/>
+        Email:<%=email%>
+        <br/>
+    </h3>
+
+
+    <button id="update" class="btn btn-primary">Update Profile</button>
+    <button id="delete" class="btn btn-danger">Delete Account</button>
+    <button id="addPost" class="btn btn-success">
+        <span class="glyphicon glyphicon-pencil"></span>
+        Add post</button>
     <br/>
-    Email:<%=email%>
-    <br/>
-</h3>
-
-
-<button id="update" class="btn btn-primary">Update Profile</button>
-<button id="delete" class="btn btn-danger">Delete Account</button>
-<button id="addPost" class="btn btn-success">
-    <span class="glyphicon glyphicon-pencil"></span>
-    Add post</button>
-<br/>
-
-<h4>My posts:</h4>
-    <div id="posts_list">No posts yet </div>
 
 
 
 
-<div id="edit" style="display: none">
 
-    <input id="newName" name="name" class="form-control" placeholder='<%=name%>'>
-    <input id="newEmail" name="email" class="form-control" placeholder='<%=email%>'>
-    <br>
 
-    <button id="saveChanges" class="btn btn-primary">
-        <span class="glyphicon glyphicon-ok"></span>
-        Update
-    </button>
+    <div id="edit" style="display: none">
 
-    <button id="cancelUpdating" class="btn btn-primary">
-        <span class="glyphicon glyphicon-remove"></span>
-        Cancel
-    </button>
+        <input id="newName" name="name" class="form-control" placeholder='<%=name%>'>
+        <input id="newEmail" name="email" class="form-control" placeholder='<%=email%>'>
+        <br>
 
+        <button id="saveChanges" class="btn btn-primary">
+            <span class="glyphicon glyphicon-ok"></span>
+            Update
+        </button>
+
+        <button id="cancelUpdating" class="btn btn-primary">
+            <span class="glyphicon glyphicon-remove"></span>
+            Cancel
+        </button>
+
+    </div>
 </div>
 
 
 
 
+
+
+
+<div id="contacts">
     <div id="incomeRequests"> <h3>Income requests:</h3>
 
         <%
@@ -58,7 +66,6 @@
     <div id="friends"><h3> Friends:</h3>
         <%
         friends.friends.forEach(function(contact){
-        console.log(contact)
         %><br/>
         <a href="#user/<%=contact._id%>"><%=contact.name%></a>
         <%
@@ -66,7 +73,15 @@
         %>
     </div>
 
+</div>
 
+
+
+
+<div  id="posts">
+    <h3>My posts:</h3>
+    <div id="posts_list">No posts yet </div>
+</div>
 
 
 

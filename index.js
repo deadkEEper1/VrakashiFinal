@@ -10,9 +10,10 @@ var app = express();
 //Data base config
 mongoose.connect('localhost:/vrakashi_final');
 var db = mongoose.connection;
-db.on('open', function(){
+
+    db.on('open', function(){
     console.log('Vrakashi Data Base opened.')
-});
+    });
 
 
 

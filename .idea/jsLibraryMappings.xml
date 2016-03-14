@@ -3,6 +3,7 @@
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{VrakashiFinal node_modules}" />
     <file url="file://$PROJECT_DIR$/handlers/postHandler.js" libraries="{Node.js Globals}" />
+    <file url="file://$PROJECT_DIR$/handlers/usersHandler.js" libraries="{ECMAScript 6, Node.js Globals}" />
     <file url="file://$PROJECT_DIR$/routes/index.js" libraries="{Node.js Globals}" />
   </component>
 </project>

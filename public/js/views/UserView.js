@@ -12,11 +12,11 @@ define([
         usersPostsTemplate: _.template(PostsListTemplate),
 
         events:{
-            'click #deleteThisUser' : 'deleteThisUser',
-            'click .sendReq'          : 'sendFriendReq',
-            'click .accept'           : 'acceptFriend',
-            'click .waitForAccept'    : 'waitingForAccept',
-            'click .removeFromFriends'               : 'removeFromFriends'
+            'click #deleteThisUser'       : 'deleteThisUser',
+            'click .sendReq'              : 'sendFriendReq',
+            'click .accept'               : 'acceptFriend',
+            'click .waitForAccept'        : 'waitingForAccept',
+            'click .removeFromFriends'    : 'removeFromFriends'
         },
 
         initialize: function(){
@@ -33,12 +33,10 @@ define([
                         self.usersPosts = posts
                     }
                 });
-
-
         },
 
         render: function(){
-            console.log('rendered')
+            console.log('rendered');
             var self = this;
             $.ajax({
                 url: '/session',
@@ -47,7 +45,7 @@ define([
                 success: function(user){
                     var friends =  user.friends;
                     var $friendBtn = $('#friendButton');
-                    var $buttons = $('#buttons')
+                    var $buttons = $('#buttons');
 
                     if(friends.incomeRequests.some(function(contact){
                             return contact._id === self.model._id
@@ -61,7 +59,7 @@ define([
                             return contact._id === self.model._id
                         })){
 
-                        $buttons.html('<button class="friends">Your friend </button>')
+                        $buttons.html('<button class="friends">Your friend </button>');
                         $buttons.append('<button class="removeFromFriends"> Delete</button>');
 
                         if(self.usersPosts.length){
@@ -74,8 +72,7 @@ define([
                     if(friends.outcomeRequests.some(function (contact) {
                             return contact._id === self.model._id
                         })){
-                        //$friendBtn.removeClass('sendReq');
-                        //$friendBtn.addClass('waitForAccept');
+
 
                         $buttons.html('<button class="waitForAccept">Waiting for accepting</button>')
                     }
@@ -85,7 +82,7 @@ define([
 
                     }
                 }
-            })
+            });
             this.$el.html(this.template(this.model));
 
 
@@ -106,7 +103,7 @@ define([
         },
 
         sendFriendReq : function(){
-            var self = this
+            var self = this;
             $.ajax({
                 method: 'POST',
                 url: '/user/'+this.model._id+'/friends',
@@ -120,7 +117,7 @@ define([
                 },
 
                 error: function(err){
-                    console.log('Error')
+                    console.log('Error', err)
                 }
             });
 

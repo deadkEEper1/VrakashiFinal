@@ -14,37 +14,39 @@ define([
         },
 
         initialize: function(){
-            console.log('Log In View Inited')
+            console.log('Log In View Inited');
         },
 
         render: function(){
-            this.$el.html(this.template )
+            this.$el.html(this.template );
         },
 
         logIn: function(){
             var email = $('#email').val();
             var pass = $('#password').val();
 
-            $.ajax({
-                    method: 'POST',
-                    url: '/session',
-                    data: {
-                        email: email,
-                        password: pass
-                    },
+            if(email && pass){
+                $.ajax({
+                        method: 'POST',
+                        url: '/session',
+                        data: {
+                            email: email,
+                            password: pass
+                        },
 
-                    success: function(){
-                        Backbone.history.navigate('#myaccount', {trigger: true});
-                        var navBarView = new NavBarView();
-                            navBarView.render()
-                    },
+                        success: function(){
+                            Backbone.history.navigate('#myaccount', {trigger: true});
+                            var navBarView = new NavBarView();
+                            navBarView.render();
+                        },
 
-                    error: function () {
-                        alert('Please ensure that your email and pass entered correct');
-                        $('.logIn').val('');
+                        error: function () {
+                            alert('Please ensure that your email and pass entered correct');
+                            $('.logIn').val('');
+                        }
                     }
-                }
-            )
+                )
+            }
         },
 
         back: function(){

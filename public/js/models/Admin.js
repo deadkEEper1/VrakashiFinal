@@ -5,8 +5,7 @@ define([
         defaults:{
             admin: true
         }
-    })
+    });
 
     return Admin
-
-})
+});
